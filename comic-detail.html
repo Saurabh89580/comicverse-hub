@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ComicVerse Hub — Detail</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body class="page-detail">
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="logo">ComicVerse <span class="accent">Hub</span></div>
+      <nav class="nav-links" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="browse.html">Browse</a>
+        <a href="cart.html">Cart <span id="cart-badge" class="badge"></span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="detail-grid">
+      <div class="cover">
+        <img id="detail-img" src="" alt="comic cover">
+      </div>
+      <div class="info">
+        <h1 id="detail-title">Title</h1>
+        <p id="detail-synopsis"></p>
+        <p><strong>Creators:</strong> <span id="detail-creators"></span></p>
+        <p><strong>Publisher:</strong> <span id="detail-publisher"></span></p>
+        <p id="detail-price" style="font-size:1.25rem;font-weight:700"></p>
+        <div style="display:flex;gap:.5rem;margin-top:1rem">
+          <button id="add-to-cart" class="btn btn-view-full">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+
+
+          <button id="wish-btn" class="btn btn-ghost"><i class="fa-regular fa-heart "></i> Wishlist</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer container">
+    <p>&copy; ComicVerse Hub</p>
+  </footer>
+
+  <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="comics.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/add-to-cart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(location.search);
+      const id = params.get("id");
+      const comic = COMICS.find(c => c.id === id);
+
+      if (!comic) return;
+
+      document.getElementById("detail-title").textContent = comic.title;
+      document.getElementById("detail-img").src = comic.img;
+      document.getElementById("detail-synopsis").textContent = comic.synopsis;
+      document.getElementById("detail-publisher").textContent = comic.publisher;
+      document.getElementById("detail-creators").textContent =
+        Object.values(comic.creators).join(", ");
+      document.getElementById("detail-price").textContent =
+        "$" + comic.price.toFixed(2);
+
+      document.getElementById("add-to-cart").addEventListener("click", () => {
+        Cart.add(comic.id);
+        updateCartBadge();
+        Toast.show("Added to Cart!", { icon: "fa-solid fa-cart-plus" });
+      });
+
+      updateCartBadge();
+    });
+  </script>
+
+</body>
+</html>

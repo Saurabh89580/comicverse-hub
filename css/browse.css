@@ -1,0 +1,121 @@
+/* ===== Browse Page Layout ===== */
+
+.browse-header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Search Input */
+.search-box {
+  flex: 1;
+  background: linear-gradient(180deg, rgba(6, 6, 8, 0.85), rgba(6, 6, 8, 0.65));
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  border-radius: 25px;
+  color: #e6eef6;
+  font-size: 1rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-box::placeholder {
+  color: var(--muted);
+}
+
+.search-box:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(255, 45, 85, 0.4);
+}
+
+/* Sort Dropdown */
+.sort-select {
+  background: linear-gradient(180deg, rgba(6, 6, 8, 0.85), rgba(6, 6, 8, 0.65));
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  border-radius: 25px;
+  color: #e6eef6;
+  font-size: 1rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(255, 45, 85, 0.4);
+}
+
+/* ===== Comic Grid Card Styles ===== */
+
+.card {
+background: linear-gradient(180deg, rgba(0, 0, 0, 0.645), transparent);
+    padding: 1rem;
+    border-radius: 10px;
+    justify-content: right;
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.card:hover {
+transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6)
+}
+
+.card img {
+width: 236px;
+    height: 300px;
+    object-fit: fill;
+    border-radius: 6px;
+    transition: transform .25s ease;
+}
+
+.card img:hover {
+transform: scale(1.06) rotate(-1deg)
+}
+
+.card-body {
+  padding: 0.5rem 0.25rem 0;
+}
+
+.card-title {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.chip {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.price {
+  font-weight: bold;
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+}
+
+/* ===== Responsive Improvements ===== */
+
+@media (max-width: 600px) {
+  .browse-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .clear-btn,
+  .sort-select {
+    width: 100%;
+  }
+}

@@ -178,7 +178,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         // New releases
         const newGrid = document.getElementById("new-grid");
-        COMICS.slice(0, 6).forEach((c) => {
+        COMICS.slice(0, 10).forEach((c) => {
           const card = document.createElement("article");
           card.className = "card";
           card.innerHTML = `
@@ -211,7 +211,7 @@
 
         // Popular
         const popGrid = document.getElementById("popular-grid");
-        COMICS.slice(0, 4).forEach((c) => {
+        COMICS.slice(3, 8).forEach((c) => {
           const el = document.createElement("div");
           el.className = "card";
           el.innerHTML = `<img src="${c.img}" alt=""><div class="meta"><h4>${c.title}</h4><a class="btn btn-view-full" href="comic-detail.html?id=${c.id}">Open</a></div>`;

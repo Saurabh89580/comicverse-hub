@@ -9,11 +9,17 @@
 </head>
 <body class="page-detail">
   <header class="nav">
-    <div class="container nav-inner">
-      <div class="logo">ComicVerse <span class="accent">Hub</span></div>
-      <nav class="nav-links" aria-label="Main">
+    <div class="nav-inner"> <nav class="nav-links nav-links--left" aria-label="Main">
         <a href="index.html">Home</a>
         <a href="browse.html">Browse</a>
+      </nav>
+  
+      <div class="logo">
+        <a href="index.html">ComicVerse <span class="accent">Hub</span></a>
+      </div>
+  
+      <nav class="nav-links nav-links--right" aria-label="User">
+        <a href="wishlist.html">Wishlist</a>
         <a href="cart.html">Cart <span id="cart-badge" class="badge"></span></a>
       </nav>
     </div>
@@ -62,6 +68,43 @@
 
       if (!comic) return;
 
+      // --- NEW WISHLIST LOGIC (START) ---
+
+      // 1. Get wishlist data
+      const wishlistedIds = Wishlist.load();
+      let isWishlisted = wishlistedIds.includes(comic.id);
+
+      // 2. Get button and icon elements
+      const wishBtn = document.getElementById("wish-btn");
+      const wishIcon = wishBtn.querySelector("i");
+
+      // 3. Set initial state on page load
+      if (isWishlisted) {
+        wishIcon.classList.remove("fa-regular");
+        wishIcon.classList.add("fa-solid");
+        wishIcon.style.color = "var(--accent)";
+      }
+
+      // 4. Add click listener for wishlist button
+      wishBtn.addEventListener("click", () => {
+        Wishlist.toggle(comic.id); // Save state
+
+        // Toggle visual state
+        isWishlisted = wishIcon.classList.toggle("fa-solid");
+        wishIcon.classList.toggle("fa-regular");
+
+        if (isWishlisted) {
+          wishIcon.style.color = "var(--accent)";
+          Toast.show("Added to Wishlist", { icon: "fa-solid fa-heart" });
+        } else {
+          wishIcon.style.color = "";
+          Toast.show("Removed from Wishlist", { icon: "fa-regular fa-heart" });
+        }
+      });
+
+      // --- NEW WISHLIST LOGIC (END) ---
+
+      // --- (Your existing code) ---
       document.getElementById("detail-title").textContent = comic.title;
       document.getElementById("detail-img").src = comic.img;
       document.getElementById("detail-synopsis").textContent = comic.synopsis;

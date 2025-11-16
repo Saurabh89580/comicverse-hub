@@ -1,4 +1,3 @@
-/* toast.js - non-blocking toasts (replaces alert) */
 const Toast = (function(){
   const root = document.getElementById('toast-root') || (function(){
     const r = document.createElement('div'); r.id='toast-root'; document.body.appendChild(r); return r;

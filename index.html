@@ -21,20 +21,25 @@
     />
   </head>
 
-  <body class="page-home">
-    <header class="nav">
-      <div class="nav-inner">
-        <div class="logo">ComicVerse <span class="accent">Hub</span></div>
-        <nav class="nav-links" aria-label="Main">
-          <a href="index.html">Home</a>
-          <a href="browse.html">Browse</a>
-          <a href="cart.html"
-            >Cart <span id="cart-badge" class="badge"></span
-          ></a>
-          <!-- <a href="tests/tests.html">Tests</a> -->
-        </nav>
+<body class="page-browse">
+
+  <header class="nav">
+    <div class="nav-inner">
+      <nav class="nav-links nav-links--left" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="browse.html">Browse</a>
+      </nav>
+
+      <div class="logo">
+        <a href="index.html">ComicVerse <span class="accent">Hub</span></a>
       </div>
-    </header>
+
+      <nav class="nav-links nav-links--right" aria-label="User">
+        <a href="wishlist.html">Wishlist</a>
+        <a href="cart.html">Cart <span id="cart-badge" class="badge"></span></a>
+      </nav>
+    </div>
+  </header>
 
     <main class="container">
       <section class="hero">
@@ -173,39 +178,67 @@
     <script src="js/app.js"></script>
     <script src="js/add-to-cart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-
     <script>
+      /**
+       * Toggles the visual state of a heart button and updates the wishlist.
+       * This function is placed in the global scope to be accessible by onclick.
+       */
+      function toggleHeart(buttonEl, id) {
+        Wishlist.toggle(id); // Save the state
+        const icon = buttonEl.querySelector('i');
+
+        // Toggle visual state
+        const isNowWishlisted = icon.classList.toggle('fa-solid');
+        icon.classList.toggle('fa-regular');
+
+        if (isNowWishlisted) {
+          icon.style.color = 'var(--accent)';
+          Toast.show("Added to Wishlist", { icon: "fa-solid fa-heart" });
+        } else {
+          icon.style.color = ''; // Reset color
+          Toast.show("Removed from Wishlist", { icon: "fa-regular fa-heart" });
+        }
+
+        // Add the animation from your CSS
+        icon.classList.add('animated');
+        setTimeout(() => icon.classList.remove('animated'), 200); // Clean up animation
+      }
+
       document.addEventListener("DOMContentLoaded", () => {
+        // Get wishlist IDs *once* on load
+        const wishlistedIds = Wishlist.load();
+
         // New releases
         const newGrid = document.getElementById("new-grid");
         COMICS.slice(0, 10).forEach((c) => {
+          // Check if this comic is wishlisted on load
+          const isWishlisted = wishlistedIds.includes(c.id);
+          const heartIconClass = isWishlisted ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+          const heartStyle = isWishlisted ? 'style="color: var(--accent);"' : '';
+
           const card = document.createElement("article");
           card.className = "card";
           card.innerHTML = `
           <img loading="lazy" src="${c.img}" alt="${c.title}">
           <div class="meta">
-
-  <!-- title + heart -->
-  <div class="title-row">
-    <h4>${c.title}</h4>
-    <button class="heart-btn" data-id="${c.id}" onclick="Wishlist.toggle('${
-            c.id
-          }')">
-      <i class="fa-regular fa-heart"></i>
-    </button>
-  </div>
-
-  <div class="muted">${c.publisher} • ${new Date(
+    
+            <div class="title-row">
+              <h4>${c.title}</h4>
+              <button class="heart-btn" data-id="${c.id}" onclick="toggleHeart(this, '${c.id}')">
+                <i class="${heartIconClass}" ${heartStyle}></i>
+              </button>
+            </div>
+    
+            <div class="muted">${c.publisher} • ${new Date(
             c.release_date
           ).getFullYear()}</div>
-
-  <div style="margin-top:.5rem"><strong>$${c.price.toFixed(2)}</strong></div>
-
-  <!-- full-width view -->
-  <a class="btn btn-view-full" href="comic-detail.html?id=${c.id}">View</a>
-
-</div>
-`;
+    
+            <div style="margin-top:.5rem"><strong>$${c.price.toFixed(2)}</strong></div>
+    
+            <a class="btn btn-view-full" href="comic-detail.html?id=${c.id}">View</a>
+    
+          </div>
+          `;
           newGrid.appendChild(card);
         });
 
@@ -221,5 +254,6 @@
         updateCartBadge();
       });
     </script>
+    
   </body>
 </html>

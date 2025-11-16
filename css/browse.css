@@ -105,6 +105,9 @@ transform: scale(1.06) rotate(-1deg)
   font-size: 0.95rem;
 }
 
+.grid--comics {
+  grid-template-columns: repeat(4, 1fr);
+}
 /* ===== Responsive Improvements ===== */
 
 @media (max-width: 600px) {

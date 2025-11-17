@@ -7,7 +7,7 @@ const COMICS = [
     publisher: "Image",
     characters: ["Raven", "Detective Cole"],
     genre: ["Action", "Mystery"],
-    price: 3.99,
+    price: 399,
     release_date: "2025-07-10",
     img: "assets/images/images/nightfall.jpg",
     synopsis: "A gritty origin story where shadows reveal more than they hide.",
@@ -20,7 +20,7 @@ const COMICS = [
   publisher: "Image Comics",
   characters: ["Mark Grayson", "Omni-Man", "Viltrumites"],
   genre: ["Superhero", "Action", "Sci-Fi"],
-  price: 31.00, // you didn't give price, so I used views = 31M → placeholder
+  price: 310, // you didn't give price, so I used views = 31M → placeholder
   release_date: "2024-01-01", // no date given → placeholder, change if needed
   img: "assets/images/images/invincible.jpg", // update filename based on your image
   synopsis:
@@ -46,7 +46,7 @@ const COMICS = [
   publisher: "DC",
   characters: ["Batman"],
   genre: ["Superhero"],
-  price: 14.00, // placeholder based on "14 Releases" (change if needed)
+  price: 140, // placeholder based on "14 Releases" (change if needed)
   release_date: "2024-05-01", // placeholder, update if needed
   img: "assets/images/images/batman.jpg", // update filename to match your image
   synopsis:
@@ -80,7 +80,7 @@ const COMICS = [
   publisher: "Marvel",
   characters: ["Spider-Man", "Galactus (Corpse)", "Ragtag Survivors"],
   genre: ["Horror", "Action", "Zombies"],
-  price: 3.99,
+  price: 399,
   release_date: "2020-09-01",
   img: "assets/images/images/marvel-zombies-resurrection.jpg",
   synopsis: "When the corpse of Galactus crashes to Earth carrying a terrifying cannibalistic virus, Spider-Man and a desperate team of heroes fight to save humanity and uncover the horrifying truth behind the outbreak.",
@@ -105,7 +105,7 @@ const COMICS = [
     "Avengers"
   ],
   genre: ["Superhero", "Action", "Drama"],
-  price: 3.99,
+  price: 499,
   release_date: "2006-05-01",
   img: "assets/images/images/civil-war-2006.jpg",
   synopsis:
@@ -158,7 +158,7 @@ const COMICS = [
     "Weapon X"
   ],
   genre: ["Superhero", "Action", "Sci-Fi"],
-  price: 4.99,
+  price: 499,
   release_date: "2023-09-01",
   img: "assets/images/images/predator-vs-wolverine-2023.jpg",
   synopsis:
@@ -192,7 +192,7 @@ const COMICS = [
     "Green Goblin"
   ],
   genre: ["Superhero", "Action", "Mystery"],
-  price: 4.99,
+  price: 499,
   release_date: "2024-01-01",
   img: "assets/images/images/ultimate-spider-man-2024.jpg",
   synopsis:
@@ -218,7 +218,7 @@ const COMICS = [
     "Cloud City Imperials"
   ],
   genre: ["Space", "Sci-Fi", "Action"],
-  price: 4.99,
+  price: 699,
   release_date: "2020-02-01",
   img: "assets/images/images/star-wars-darth-vader-2020.jpg",
   synopsis:
@@ -250,7 +250,7 @@ const COMICS = [
     "Bruce Wayne"
   ],
   genre: ["Superhero", "Fighting", "Friendship"],
-  price: 4.99,
+  price: 599,
   release_date: "2022-03-01",
   img: "assets/images/images/batman-superman-worlds-finest-2022.jpg",
   synopsis:

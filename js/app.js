@@ -35,7 +35,7 @@ card.innerHTML = `
 <div class="meta">
 <h4>${c.title}</h4>
 <div class="muted">${c.publisher} • ${new Date(c.release_date).getFullYear()}</div>
-<div style="margin-top:.5rem"><strong>$${c.price.toFixed(2)}</strong></div>
+<div style="margin-top:.5rem"><strong>₹${c.price.toFixed(2)}</strong></div>
 <div style="margin-top:.5rem"><a href="comic-detail.html?id=${c.id}">View</a></div>
 </div>`;
 grid.appendChild(card);

@@ -45,7 +45,7 @@ function cardHTML(c) {
 
         <div class="muted">${c.publisher}</div>
 
-        <div style="margin-top:.5rem"><strong>$${c.price.toFixed(2)}</strong></div>
+        <div style="margin-top:.5rem"><strong>₹${c.price.toFixed(2)}</strong></div>
 
         <!-- Add this button -->
         <button class="btn btn-view-full" data-add-to-cart data-id="${c.id}">
